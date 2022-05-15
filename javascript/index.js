@@ -116,6 +116,8 @@ for (let i = 0, l = voteNowButtons.length; i < l; i++) {
         }
         let color = document.getElementById(`icon${i}`);
         let icon = document.getElementById(`imgIcon${i}`);
+        color.classList.remove("thumbsUp");
+        color.classList.remove("thumbsDown");
         color.classList.add(thumbsColor);
         icon.src = `../assets/img/thumbs-${popularity}.svg`;
         
