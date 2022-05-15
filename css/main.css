@@ -1,0 +1,263 @@
+:root {
+    --color-green-positive: 60, 187, 180;
+    --color-yellow-negative: 249, 173, 29;
+    --color-dark-background: rgba(0, 0, 0, .4);
+    --color-darker-background: rgba(0, 0, 0, .6);
+    --color-darker-gray: rgba(51, 51, 51, 1);
+    --color-dark-gray: rgba(70, 70, 70, 1);
+    --color-light-gray: rgba(235, 235, 235, 1);
+    --color-light-background: rgba(255, 255, 255, .4);
+    --color-lighter-background: rgba(255, 255, 255, .8);
+    --color-white: rgba(255, 255, 255, 1);
+    --color-blue: rgba(60, 187, 180, 0.8);
+    --color-orange: rgba(249, 173, 29, 0.8);
+}
+
+html, body {
+    width: 100%;
+    margin: 0;
+    background-color: var(--color-white);
+    font-family: 'Lato', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    position: relative;
+}
+.header {
+    background-image: url(../assets/img/pope-francis.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 422px;
+    width: 100%;
+    position: relative;
+}
+.header_title { 
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 24px 7px 12px;
+}
+.header_h1 {
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--color-white);
+}
+.header_hamburger {
+    width: 25px;
+    height: 20px;
+}
+.header_container {
+    background: rgba(0, 0, 0, 0.4);
+    height: 292px;
+    width: 204px;
+    margin-left: 12px;
+    padding-left: 12px;
+    padding-top: 12px;
+    position: absolute;
+}
+.header_container_opinion {
+    color: var(--color-white);
+    font-weight: 300;
+}
+.header_container_pope {
+    color: var(--color-white);
+    font-weight: 400;
+    font-size: 3rem;
+    line-height: 36px;
+    padding-bottom: 10px;
+}
+.header_container_description {
+    font-size: 1.25rem;
+    color: var(--color-white);
+    font-weight: 300;
+    padding-right: 12px;
+    padding-bottom: 12px;
+}
+.header_container_veredict {
+    color: var(--color-white);
+    font-weight: 700;
+}
+.header_container_thumbs {
+    display: flex;
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
+.thumb {
+    width: 102px;
+    height: 32px;
+    text-align: center;
+    padding-top: 8px;
+}
+.thumbsUp {
+    background-color: var(--color-blue);
+}
+.thumbsDown {
+    background-color: var(--color-orange);
+}
+.header_container_time {
+    display: flex;
+    width: 100%;
+    height: 36px;
+    position: absolute;
+    bottom: 0;
+}
+.header_container_closing {
+    background: rgba(0, 0, 0, 0.4);
+    text-align: right;
+    padding-right: 5px;
+    padding-top: 12px;
+    width: 108px;
+}
+.header_container_closing p {
+    color: var(--color-white);
+    font-weight: 300;
+}
+.header_container_days {
+    background: rgba(255, 255, 255, 0.4);
+    width: 375px;
+    padding-top: 7px;
+    padding-left: 12px;
+}
+.header_container_days p {
+    color: var(--color-darker-gray);
+    font-size: 1.5rem;
+}
+.description_container {
+    align-items: center;
+    margin: 12px;
+    margin-bottom: 0;
+    background-color: #EBEBEB;
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+}
+.speak_container_beHeard {
+    color: #464646;
+    font-weight: 300;
+    font-size: 1.25rem;   
+}
+.speak_container_beCounted {
+    color: #464646;
+    font-size: 2rem;
+    font-weight: 700;
+}
+.description_container_mission {
+    width: 189px;
+}
+.description_container_mission p {
+    color: #464646;
+    font-weight: 300;
+    font-size: 1.25rem;
+}
+.description_rulingsText_container {
+    padding-top: 24px;
+}
+.description_rulingsText_container p {
+    font-weight: 300;
+    font-size: 2rem;
+    padding-left: 12px;
+}
+.cards_container {
+    padding-left: 12px;
+    width: 100%;
+    display: flex;
+    overflow-x: scroll;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    gap: 40px;
+    padding: 0 44px;
+}
+.card {
+    width: 300px;
+    height: 300px;
+    flex: 1 0 auto;
+    display: flex;
+    flex-flow: column;
+    padding: 0 36px 0 30px;
+    align-items: center;
+    position: relative;
+}
+.card_title {
+    margin-top: 25px;
+    height: 74px;
+    overflow: hidden;
+    color: var(--color-white);
+    font-weight: 400;
+    font-size: 2.5rem;
+    align-self: baseline;
+}
+.card_description {
+    margin-top: 8px;
+    color: var(--color-white);
+    height: 36px;
+    overflow: hidden;
+    font-weight: 400;
+    font-size: 1.25rem;
+}
+.card_time {
+    color: var(--color-white);
+    font-weight: 700;
+    margin-top: 12px;
+    text-align: end;
+    width: 100%;
+}
+.icon_container {
+    width: 30px;
+    height: 30px;
+    padding: 7px;
+}
+.thumbsButton {
+    border-style: none;
+}
+.icon_status {
+    position: relative;
+    top: 56px;
+    right: 132px;
+}
+.button_container {
+    padding-top: 12px;
+    display: flex;
+    gap: 12px;
+}
+.voteNow_button {
+    background: rgba(0, 0, 0, 0.6);
+    text-align: center;
+    width: 107px;
+    height: 38px;
+    font-weight: 400px;
+    font-size: 1.25rem;
+    color: var(--color-white);
+    border: none;
+}
+.status_gauge {
+    height: 36px;
+    width: 300px;
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+.status_gauge_positive {
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: var(--color-white);
+    text-align: left;
+    padding: 7px 0 0 12px;
+}
+.status_gauge_negative {
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: var(--color-white);
+    text-align: right;
+    padding: 7px 6px 0 0;
+}
