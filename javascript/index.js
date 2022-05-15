@@ -1,13 +1,17 @@
 import api from '../assets/data.json' assert { type: "json" };
 
+//wrapper is the container of the cards
 const wrapper = document.getElementById("container");
 
+//myHTML is the variable we'll use to fill the cards with the data.json info
 let myHTML = '';
 
+//creating the cards with the provided data
 api.data.forEach(famousPerson => {
     const formatTime = famousPerson.lastUpdated;
     let thumbsColor = "thumbsUp";
     let popularity = "up";
+    //upwidth and downwidth are used to organize the width of the status gauge
     const upWidth = Math.round((famousPerson.votes.positive/(famousPerson.votes.positive + famousPerson.votes.negative))*100);
     const downWidth = 100 - upWidth; 
     if (famousPerson.votes.positive < famousPerson.votes.negative) {
@@ -34,7 +38,6 @@ api.data.forEach(famousPerson => {
             </div>
         </div>
     `;
-
 });
 wrapper.innerHTML = myHTML;
 
