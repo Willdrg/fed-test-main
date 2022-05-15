@@ -30,8 +30,8 @@ api.data.forEach(famousPerson => {
     myHTML +=
     `
     <div class="card" id="${cardID}" style="background-image: url(../assets/img/${famousPerson.picture});">
-            <div class="icon_status icon_container ${thumbsColor}">
-            <img src="../assets/img/thumbs-${popularity}.svg" alt="">
+            <div id = "icon${cardID}"class="icon_status icon_container ${thumbsColor}">
+            <img id = "imgIcon${cardID}"src="../assets/img/thumbs-${popularity}.svg" alt="">
             </div>
             <h2 class="card_title">${famousPerson.name}</h2>
             <p class="card_description">${famousPerson.description}</p>
@@ -93,8 +93,8 @@ for (let i = 0, l = voteNowButtons.length; i < l; i++) {
             let negativeGauge = document.getElementById(negative);
             positiveGauge.style.flex = `1 1 ${upWidth}%`;
             negativeGauge.style.flex = `1 1 ${downWidth}%`;
-            positiveGauge.innerText = `${upWidth}%`;
-            negativeGauge.innerText = `${downWidth}%`;
+            positiveGauge.innerHTML = `<img src="../assets/img/thumbs-up.svg" alt="thumbsUp"> ${upWidth}%`;
+            negativeGauge.innerHTML = `${downWidth}% <img src="../assets/img/thumbs-down.svg" alt="thumbsDown">`;
         } else if (finalVote == 2) {
             api.data[i].votes.negative ++;
             const upWidth = Math.round((api.data[i].votes.positive/(api.data[i].votes.positive + api.data[i].votes.negative))*100);
@@ -105,9 +105,21 @@ for (let i = 0, l = voteNowButtons.length; i < l; i++) {
             let negativeGauge = document.getElementById(negative);
             positiveGauge.style.flex = `1 1 ${upWidth}%`;
             negativeGauge.style.flex = `1 1 ${downWidth}%`;
-            positiveGauge.innerText = `${upWidth}%`;
-            negativeGauge.innerText = `${downWidth}%`;
+            positiveGauge.innerHTML = `<img src="../assets/img/thumbs-up.svg" alt="thumbsUp"> ${upWidth}%`;
+            negativeGauge.innerHTML = `${downWidth}% <img src="../assets/img/thumbs-down.svg" alt="thumbsDown">`;
         }
+        let thumbsColor = "thumbsUp";
+        let popularity = "up";
+        if (api.data[i].votes.positive < api.data[i].votes.negative) {
+            thumbsColor = "thumbsDown";
+            popularity = "down";
+        }
+        let color = document.getElementById(`icon${i}`);
+        let icon = document.getElementById(`imgIcon${i}`);
+        color.classList.add(thumbsColor);
+        icon.src = `../assets/img/thumbs-${popularity}.svg`;
+        
+        
         let eyebrow = "eyebrowText" + i;
         document.getElementById(eyebrow).innerText = "Thank you for your vote";
         thumbsUpButtons[i].classList.add("voteAgainStatus");
