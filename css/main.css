@@ -46,13 +46,19 @@ body {
     padding: 30px 24px 7px 12px;
 }
 .header_h1 {
-    font-size: 24px;
+    font-size: 2rem;
     font-weight: 400;
     color: var(--color-white);
 }
 .header_hamburger {
     width: 25px;
     height: 20px;
+}
+.header_menu {
+    display: none;
+}
+.header_container_wikipedia { 
+    display: none;
 }
 .header_container {
     background: var(--color-dark-background);
@@ -116,7 +122,7 @@ body {
     text-align: right;
     padding-right: 5px;
     padding-top: 12px;
-    width: 108px;
+    width: 30%;
 }
 .header_container_closing p {
     color: var(--color-white);
@@ -124,7 +130,7 @@ body {
 }
 .header_container_days {
     background: var(--color-light-background);
-    width: 375px;
+    width: 70%;
     padding-top: 7px;
     padding-left: 12px;
 }
@@ -160,13 +166,11 @@ body {
     font-size: 1.25rem;
 }
 .description_rulingsText_container {
-    padding-top: 24px;
+    padding: 24px 12px;
 }
 .description_rulingsText_container p {
     font-weight: 300;
     font-size: 2rem;
-    padding-left: 12px;
-    padding-bottom: 24px;
 }
 .cards_container {
     width: 100%;
@@ -183,7 +187,7 @@ body {
     height: 300px;
     flex: 1 0 auto;
     display: flex;
-    flex-flow: column;
+    flex-direction: column;
     padding: 0 36px 0 30px;
     align-items: center;
     position: relative;
@@ -242,7 +246,7 @@ body {
 }
 .status_gauge {
     height: 36px;
-    width: 300px;
+    width: 100%;
     display: flex;
     position: absolute;
     bottom: 0;

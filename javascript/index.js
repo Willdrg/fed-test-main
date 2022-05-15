@@ -20,7 +20,7 @@ api.data.forEach(famousPerson => {
     }
     myHTML +=
     `
-    <div class="card" style="background: url(../assets/img/${famousPerson.picture});">
+    <div class="card" style="background-image: url(../assets/img/${famousPerson.picture});">
             <div class="icon_status icon_container ${thumbsColor}">
             <img src="../assets/img/thumbs-${popularity}.svg" alt="">
             </div>

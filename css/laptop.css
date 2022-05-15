@@ -1,0 +1,176 @@
+html, body {
+  font-size: 18px;
+}
+.header {
+    padding: 52px 171px 0;
+    height: 730px;
+    background-image: url(../assets/img/pope-francis.@2x.png);
+}
+.header_harmburger {
+    display: none;
+}
+.header_menu {
+    display: flex;
+}
+.menu_link {
+    color: var(--color-white);
+    font-weight: 300;
+    margin-right: 18px;
+    text-decoration: none;
+}
+.header_menu img {
+    margin-left: 36px;
+}
+.header_container {
+    width: 550px;
+    height: 475px;
+    padding-top: 36px;
+    margin-top: 46px;
+    line-height: 21px;
+    padding-left: 27px;
+    padding: 36px 91px 0 27px;
+}
+.header_container_pope{
+    padding-top: 12px;
+}
+.header_container_description {
+    padding-top: 36px;
+    font-weight: 300;
+    font-size: 1.3rem;
+    line-height: 28px;
+}
+.header_container_wikipedia {
+    display: inline-block;
+    font-weight: 300;
+    color: var(--color-white);
+    padding-top: 18px;
+}
+.header_container_veredict {
+    padding-top: 18px;
+    font-size: 1.5rem;
+}
+.thumb {
+    width: 276px;
+    height: 82px;
+    padding-top: 23px;
+}
+.thumb img {
+    width: 36px;
+    height: 36px;
+}
+.header_container_time {
+    right: 0;
+    height: 54px;
+}
+.header_container_closing p {
+    font-size: 1.3rem;
+}
+.header_container_days {
+    padding-top: 5px;
+}
+.header_container_days p {
+    font-size: 2rem;
+}
+.description_container {
+    margin: 36px 170px;
+    height: 88px;
+}
+.description_container_mission {
+    width: 77%;
+}
+.description_container_mission p {
+    font-size: 1rem;
+}
+.description_rulingsText_container {
+    margin: 0 170px 36px 170px;
+    padding: 0;
+}
+.cards_container {
+    flex-direction: column;
+    overflow-x: visible;
+    margin: 0 170px;
+    padding: 0;
+    width: 1100px;
+    height: max-content;
+}
+.card {
+    width: 100%;
+    max-width: 1100px;
+    height: 170px; 
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: gray;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-right: 14px;
+}
+.card_title {
+    position: absolute;
+    font-size: 2rem;
+    left: 252px;
+    bottom: 90px;
+}
+.card_description {
+    margin-left: 136px;
+    height: 53px;
+    max-width: 540px;
+}
+.icon_container {
+    width: 45px;
+    height: 45px;
+    padding: 10.5px;
+}
+.icon_container img {
+    width: 24px;
+    height: 24px;
+}
+.icon_status {
+    top: -63px;
+    right: 30px;
+}
+.status_gauge_positive {
+    padding: 0 16px;
+}
+.status_gauge_negative {
+    padding: 0 16px;
+}
+.card_time  {
+    position: absolute;
+    bottom: 128px;
+    right: 35px;
+}
+.voteNow_button {
+    width: 135px;
+    height: 45px;
+}
+.suggestions_container {
+    margin: 36px 170px;
+    padding: 18px 36px;
+    height: 108px;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.suggestions_text {
+    width: auto;
+    font-size: 1.5rem;
+}
+.submit_button {
+    width: 360px;
+    height: 72px;
+}
+.line {
+    margin: 0 170px;
+}
+.footer {
+    margin: 36px 170px;
+}
+.footer_info_list {
+    display: flex;
+    gap: 36px;
+}
+.footer_media {
+    display: flex;
+}
+.footer_media p {
+    padding-right: 18px;
+}
