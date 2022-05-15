@@ -5,10 +5,18 @@ const wrapper = document.getElementById("container");
 
 //myHTML is the variable we'll use to fill the cards with the data.json info
 let myHTML = '';
+//cardID is a counter used to create different ID's for each card and some of their elements
 let cardID = 0;
+//relativeTimeArray is to store the format time from each card
+let relativeTimeArray = [];
 //creating the cards with the provided data
 api.data.forEach(famousPerson => {
-    const formatTime = famousPerson.lastUpdated;
+    //creating the format of the dates so it looks like "1 year ago"
+    const formatter = new Intl.RelativeTimeFormat();
+    const time = (Date.parse(famousPerson.lastUpdated) - Date.now())/(1000 * 3600 * 24 * 365);
+    const formatTime = formatter.format(Math.round(time), 'years');
+    relativeTimeArray.push(formatTime);
+    //thumbsColor is for the card icon color
     let thumbsColor = "thumbsUp";
     let popularity = "up";
     //upwidth and downwidth are used to organize the width of the status gauge
@@ -27,15 +35,16 @@ api.data.forEach(famousPerson => {
             </div>
             <h2 class="card_title">${famousPerson.name}</h2>
             <p class="card_description">${famousPerson.description}</p>
-            <p class="card_time">${formatTime}</p>
+            <p class="card_time" id="eyebrowText${cardID}">${formatTime}</p>
             <div class="button_container">
                 <button class="thumbsUpButton icon_container thumbsUp thumbsButton" ><img src="../assets/img/thumbs-up.svg" alt=""></button>
                 <button class="thumbsDownButton icon_container thumbsDown thumbsButton" ><img src="../assets/img/thumbs-down.svg" alt=""></button>
-                <button class="voteNow_button" id="voteNow${cardID}" disabled>Vote Now</button>
+                <button class="voteNow_button voteButton" id="voteNow${cardID}" disabled>Vote Now</button>
+                <button class="voteAgain_button voteButton" id="voteAgain${cardID}" style ="display: none">Vote Again</button>
             </div>
             <div class="status_gauge">
-                <span class="thumbsUp status_gauge_positive" style= "flex: 1 1 ${upWidth}%"><img src="../assets/img/thumbs-up.svg" alt="thumbsUp">  ${upWidth}%</span>
-                <span class="thumbsDown status_gauge_negative" style= "flex: 1 1 ${downWidth}%">${downWidth}%  <img src="../assets/img/thumbs-down.svg" alt="thumbsDown"></span>
+                <span class="thumbsUp status_gauge_positive" id="positive_gauge${cardID}" style= "flex: 1 1 ${upWidth}%"><img src="../assets/img/thumbs-up.svg" alt="thumbsUp">  ${upWidth}%</span>
+                <span class="thumbsDown status_gauge_negative" id="negative_gauge${cardID}" style= "flex: 1 1 ${downWidth}%">${downWidth}%  <img src="../assets/img/thumbs-down.svg" alt="thumbsDown"></span>
             </div>
         </div>
     `;   
@@ -47,7 +56,7 @@ wrapper.innerHTML = myHTML;
 let upTrue = 1;
 let downTrue = 2;
 let finalVote = 0;
-//adding the event listener to the Thumbsup buttons
+//adding the event listener to the Thumbs buttons
 var thumbsUpButtons = document.getElementsByClassName("thumbsUpButton");
 for (let i = 0, l = thumbsUpButtons.length; i < l; i++) {
     thumbsUpButtons[i].addEventListener('click', function() {
@@ -69,11 +78,53 @@ function enableButton (id, voteCounter){
 }
 
 var voteNowButtons = document.getElementsByClassName("voteNow_button");
+var voteAgain = document.getElementsByClassName("voteAgain_button");
+
+//vote Now functionality (adding event listener and the actions)
 for (let i = 0, l = voteNowButtons.length; i < l; i++) {
-    if(voteNowButtons[i].disabled) {
-        voteNowButtons[i].addEventListener('click', function() {
-            console.log("funciono");
-            console.log(finalVote);
-        })
-    }
+    voteNowButtons[i].addEventListener('click', function() {
+        if (finalVote == 1) {
+            api.data[i].votes.positive ++;
+            const upWidth = Math.round((api.data[i].votes.positive/(api.data[i].votes.positive + api.data[i].votes.negative))*100);
+            const downWidth = 100 - upWidth; 
+            let positive = "positive_gauge" + i;
+            let negative = "negative_gauge" + i;
+            let positiveGauge = document.getElementById(positive);
+            let negativeGauge = document.getElementById(negative);
+            positiveGauge.style.flex = `1 1 ${upWidth}%`;
+            negativeGauge.style.flex = `1 1 ${downWidth}%`;
+            positiveGauge.innerText = `${upWidth}%`;
+            negativeGauge.innerText = `${downWidth}%`;
+        } else if (finalVote == 2) {
+            api.data[i].votes.negative ++;
+            const upWidth = Math.round((api.data[i].votes.positive/(api.data[i].votes.positive + api.data[i].votes.negative))*100);
+            const downWidth = 100 - upWidth; 
+            let positive = "positive_gauge" + i;
+            let negative = "negative_gauge" + i;
+            let positiveGauge = document.getElementById(positive);
+            let negativeGauge = document.getElementById(negative);
+            positiveGauge.style.flex = `1 1 ${upWidth}%`;
+            negativeGauge.style.flex = `1 1 ${downWidth}%`;
+            positiveGauge.innerText = `${upWidth}%`;
+            negativeGauge.innerText = `${downWidth}%`;
+        }
+        let eyebrow = "eyebrowText" + i;
+        document.getElementById(eyebrow).innerText = "Thank you for your vote";
+        thumbsUpButtons[i].classList.add("voteAgainStatus");
+        thumbsDownButtons[i].classList.add("voteAgainStatus");
+        voteNowButtons[i].disabled = true;
+        voteNowButtons[i].style.display = "none";
+        voteAgain[i].style.display = "block";
+    })
+}
+//vote Again functions (reseting all the other buttons)
+for (let i = 0, l = voteAgain.length; i < l; i++) {
+    voteAgain[i].addEventListener('click', function() {
+        thumbsUpButtons[i].classList.remove("voteAgainStatus");
+        thumbsDownButtons[i].classList.remove("voteAgainStatus");
+        voteNowButtons[i].style.display = "block";
+        voteAgain[i].style.display = "none";
+        let eyebrow = "eyebrowText" + i;
+        document.getElementById(eyebrow).innerText = relativeTimeArray[i];
+    })
 }

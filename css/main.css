@@ -237,12 +237,11 @@ body {
     display: flex;
     gap: 12px;
 }
-.voteNow_button {
+.voteButton {
     background: var(--color-darker-background);
     text-align: center;
     width: 107px;
     height: 38px;
-    font-weight: 400px;
     font-size: 1.25rem;
     color: var(--color-white);
     border: none;
@@ -319,4 +318,7 @@ body {
 }
 .voteNowAble {
     border: 1px solid var(--color-white);
+}
+.voteAgainStatus {
+    visibility: hidden;
 }
