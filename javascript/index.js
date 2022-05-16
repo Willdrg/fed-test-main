@@ -61,12 +61,16 @@ var thumbsUpButtons = document.getElementsByClassName("thumbsUpButton");
 for (let i = 0, l = thumbsUpButtons.length; i < l; i++) {
     thumbsUpButtons[i].addEventListener('click', function() {
     enableButton(i, upTrue);
+    thumbsUpButtons[i].classList.add("button_selected");
+    thumbsDownButtons[i].classList.remove("button_selected");
   })
 }
 var thumbsDownButtons = document.getElementsByClassName("thumbsDownButton");
 for (let i = 0, l = thumbsDownButtons.length; i < l; i++) {
     thumbsDownButtons[i].addEventListener('click', function() {
     enableButton(i, downTrue);
+    thumbsDownButtons[i].classList.add("button_selected");
+    thumbsUpButtons[i].classList.remove("button_selected");
   })
 }
 function enableButton (id, voteCounter){
@@ -83,7 +87,7 @@ var voteAgain = document.getElementsByClassName("voteAgain_button");
 //vote Now functionality (adding event listener and the actions)
 for (let i = 0, l = voteNowButtons.length; i < l; i++) {
     voteNowButtons[i].addEventListener('click', function() {
-        if (finalVote == 1) {
+        if (finalVote === 1) {
             api.data[i].votes.positive ++;
             const upWidth = Math.round((api.data[i].votes.positive/(api.data[i].votes.positive + api.data[i].votes.negative))*100);
             const downWidth = 100 - upWidth; 
@@ -95,7 +99,7 @@ for (let i = 0, l = voteNowButtons.length; i < l; i++) {
             negativeGauge.style.flex = `1 1 ${downWidth}%`;
             positiveGauge.innerHTML = `<img src="../assets/img/thumbs-up.svg" alt="thumbsUp"> ${upWidth}%`;
             negativeGauge.innerHTML = `${downWidth}% <img src="../assets/img/thumbs-down.svg" alt="thumbsDown">`;
-        } else if (finalVote == 2) {
+        } else if (finalVote === 2) {
             api.data[i].votes.negative ++;
             const upWidth = Math.round((api.data[i].votes.positive/(api.data[i].votes.positive + api.data[i].votes.negative))*100);
             const downWidth = 100 - upWidth; 
@@ -125,7 +129,9 @@ for (let i = 0, l = voteNowButtons.length; i < l; i++) {
         let eyebrow = "eyebrowText" + i;
         document.getElementById(eyebrow).innerText = "Thank you for your vote";
         thumbsUpButtons[i].classList.add("voteAgainStatus");
+        thumbsUpButtons[i].classList.remove("button_selected");
         thumbsDownButtons[i].classList.add("voteAgainStatus");
+        thumbsDownButtons[i].classList.remove("button_selected");
         voteNowButtons[i].disabled = true;
         voteNowButtons[i].style.display = "none";
         voteAgain[i].style.display = "block";
@@ -137,6 +143,7 @@ for (let i = 0, l = voteAgain.length; i < l; i++) {
         thumbsUpButtons[i].classList.remove("voteAgainStatus");
         thumbsDownButtons[i].classList.remove("voteAgainStatus");
         voteNowButtons[i].style.display = "block";
+        voteNowButtons[i].classList.remove("voteNowAble");
         voteAgain[i].style.display = "none";
         let eyebrow = "eyebrowText" + i;
         document.getElementById(eyebrow).innerText = relativeTimeArray[i];
