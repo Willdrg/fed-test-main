@@ -58,21 +58,26 @@ let downTrue = 2;
 let finalVote = 0;
 //adding the event listener to the Thumbs buttons
 var thumbsUpButtons = document.getElementsByClassName("thumbsUpButton");
+var thumbsDownButtons = document.getElementsByClassName("thumbsDownButton");
 for (let i = 0, l = thumbsUpButtons.length; i < l; i++) {
     thumbsUpButtons[i].addEventListener('click', function() {
     enableButton(i, upTrue);
     thumbsUpButtons[i].classList.add("button_selected");
     thumbsDownButtons[i].classList.remove("button_selected");
-  })
-}
-var thumbsDownButtons = document.getElementsByClassName("thumbsDownButton");
-for (let i = 0, l = thumbsDownButtons.length; i < l; i++) {
+    })
     thumbsDownButtons[i].addEventListener('click', function() {
     enableButton(i, downTrue);
     thumbsDownButtons[i].classList.add("button_selected");
     thumbsUpButtons[i].classList.remove("button_selected");
-  })
+})
 }
+// for (lt i = 0, l = thumbsDownButtons.length; i < l; i++) {
+//     thumbsDownButtons[i].addEventListener('click', function() {
+//     enableButton(i, downTrue);
+//     thumbsDownButtons[i].classList.add("button_selected");
+//     thumbsUpButtons[i].classList.remove("button_selected");
+//   })
+// }
 function enableButton (id, voteCounter){
     let voteID = "voteNow" + id;
     let voteNowButton = document.getElementById(voteID);
